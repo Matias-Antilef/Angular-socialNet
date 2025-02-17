@@ -5,15 +5,12 @@ export const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./social/social.routes').then((m) => m.SOCIAL_ROUTES),
+    canActivate: [],
   },
   {
     path: 'social',
     loadChildren: () =>
       import('./social/social.routes').then((m) => m.SOCIAL_ROUTES),
-  },
-  {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.routes').then((m) => m.AUTH_ROUTES),
   },
   {
     path: 'admin',
