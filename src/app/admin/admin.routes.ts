@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 
 export const ADMIN_ROUTES: Routes = [
@@ -9,11 +8,15 @@ export const ADMIN_ROUTES: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent,
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
       },
       {
         path: 'dashboard',
-        component: DashboardComponent,
+        loadComponent: () =>
+          import('./dashboard/dashboard.component').then(
+            (m) => m.DashboardComponent
+          ),
       },
     ],
   },

@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { FeedComponent } from './feed/feed.component';
-import { AccountComponent } from './account/account.component';
 import { SocialLayoutComponent } from './social-layout/social-layout.component';
 
 export const SOCIAL_ROUTES: Routes = [
@@ -10,15 +9,17 @@ export const SOCIAL_ROUTES: Routes = [
     children: [
       {
         path: '',
-        component: FeedComponent,
+        redirectTo: 'feed',
+        pathMatch: 'full',
       },
       {
         path: 'feed',
         component: FeedComponent,
       },
       {
-        path: 'account',
-        component: AccountComponent,
+        path: 'profile/:id',
+        loadComponent: () =>
+          import('./profile/profile.component').then((m) => m.ProfileComponent),
       },
     ],
   },
